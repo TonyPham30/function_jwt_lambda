@@ -1,0 +1,28 @@
+
+service: deploybottos3andlambda
+frameworkVersion: '3'
+
+provider:
+  name: aws
+  runtime: nodejs16.x
+
+functions:
+  jsonWebTokenWithTravel:
+    handler: functions/handler.jsonWebTokenWithTravel
+    events:
+      - httpApi:
+          path: /signin_jwt
+          method: post
+plugins:
+- serverless-offline
+# you can add CloudFormation resource templates here
+#resources:
+#  Resources:
+#    NewResource:
+#      Type: AWS::S3::Bucket
+#      Properties:
+#        BucketName: my-new-bucket
+#  Outputs:
+#     NewOutput:
+#       Description: "Description for the output"
+#       Value: "Some output value"
